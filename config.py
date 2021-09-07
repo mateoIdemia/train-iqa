@@ -12,19 +12,19 @@ def get_config():
     sweep_config['metric'] = metric
     parameters_dict = {
         'epochs': {
-            'values': [20]
+            'values': [5, 10]
             },
         'lr': {
-            'values': [0.0001, 0.0003, 0.0007, 0.001]
+            'values': [0.0007, 0.001]
             },
         'batch_size': {
-            'values': [32, 64]
+            'values': [32, 64, 128]
             },
         'wd': {
             'values': [ 0, 0.000001, 0.00001, 0.0001, 0.001]
             },
         'model_arch': {
-            'values': [ 'rexnet1_0x', 'rexnet1_3x', 'darknet19']
+            'values': [ 'rexnet1_0x', 'rexnet1_3x']
             },
         'image_size': {
             'value': 224
@@ -39,8 +39,15 @@ def get_config():
             'value': 1}
         ,
         'freeze': {
-            'value': None}
+            'value': '0.0.20.bias'}
         ,
+        'train_folder': {
+            'value': 'data/DS_iqa/train'}
+        ,
+        'test_folder': {
+            'value': 'data/DS_iqa/test'}
+        ,
+        
         'checkpoint': {
             'value': 'checkpoint.pth'}
     }) 
