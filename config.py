@@ -42,10 +42,10 @@ def get_config():
             'value': '0.0.20.bias'}
         ,
         'train_folder': {
-            'value': 'data/DS_iqa/train'}
+            'value': 'DS_iqa/train'}
         ,
         'test_folder': {
-            'value': 'data/DS_iqa/test'}
+            'value': 'DS_iqa/test'}
         ,
         
         'checkpoint': {

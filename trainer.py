@@ -427,11 +427,11 @@ class ClassificationTrainer(Trainer):
         acc_val = top_val/ num_samples
         acc_valNN = top_valNN/ num_samples
         wandb.log({"val_acc": acc_val})
-        wandb.log({"val_accNN": acc_val})
+        wandb.log({"val_accNN": acc_valNN})
         wandb.log({"val_loss": loss_val})
       
 
-        return dict(train_loss=self.train_loss, loss_val=loss_val, acc_val=acc_val)
+        return dict(train_loss=self.train_loss, loss_val=loss_val, acc_val=acc_val, acc_valNN=acc_valNN)
 
     @staticmethod
     def _eval_metrics_str(eval_metrics):
