@@ -45,7 +45,7 @@ def build_dataset(config):
 
 def build_network(config):
     model_cut = -2
-    num_classes=1
+    num_classes=2
     lin_features=512
     dropout_prob=0.5
     bn_final=False
