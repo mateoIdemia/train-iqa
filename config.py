@@ -39,7 +39,7 @@ def get_config():
             'value': 1}
         ,
         'freeze': {
-            'value': '0.0.20.bias'}
+            'value': None}
         ,
         'train_folder': {
             'value': 'DS_iqa/train'}
