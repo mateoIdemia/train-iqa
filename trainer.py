@@ -437,5 +437,5 @@ class ClassificationTrainer(Trainer):
     def _eval_metrics_str(eval_metrics):
         return (f"Training loss: {eval_metrics['train_loss']:.4} "
                 f"Validation loss: {eval_metrics['loss_val']:.4} "
-                f"Acc Val Blur: {eval_metrics['acc_valB']:.2%}"
+                f"Acc Val Blur: {eval_metrics['acc_valB']:.2%}")
                 #f"Acc Val Noise: {eval_metrics['acc_valN']:.2%}")
