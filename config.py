@@ -18,7 +18,7 @@ def get_config():
             'values': [0.0007, 0.001]
             },
         'batch_size': {
-            'values': [128, 256]
+            'values': [128]
             },
         'wd': {
             'values': [ 0, 0.000001, 0.00001, 0.0001, 0.001]
