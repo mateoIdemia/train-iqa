@@ -36,9 +36,14 @@ def freeze_model(model: Module, last_frozen_layer: Optional[str] = None, frozen_
 
     # Loop on parameters
     if isinstance(last_frozen_layer, str):
-  
+        layer_reached = False
         for n, p in model.named_parameters():
             if n.startswith(last_frozen_layer):
-                p.requires_grad_(True)
+                layer_reached = True
+                p.requires_grad_(False)
+            elif not layer_reached:
+                p.requires_grad_(False)
+        if not layer_reached:
+            raise ValueError(f"Unable to locate child module {last_frozen_layer}")
 
     return model
