@@ -45,7 +45,7 @@ def build_dataset(config):
 
 def build_network(config):
     model_cut = -2
-    num_classes=1
+    num_classes=2
     lin_features=512
     dropout_prob=0.5
     bn_final=False
@@ -53,36 +53,30 @@ def build_network(config):
 
     model_arch = config['model_arch']
     print(model_arch)
-    base_model = holocron.models.__dict__[model_arch](False)
+    model = holocron.models.__dict__[model_arch](False)
 
-    if model_arch[:6]=='rexnet':
-        nb_features = base_model.head[1].in_features
+    nb_features = model.head[1].in_features
 
-    elif model_arch[:6]=='resnet':
-        nb_features = base_model.head.in_features
-
-    else:
-        nb_features=1024 #darknet
+    model.head[1] = nn.Linear(nb_features, num_classes)
 
 
-
-    model = cnn_model(base_model, model_cut, nb_features, num_classes,
-                    lin_features, dropout_prob, bn_final=bn_final, concat_pool=concat_pool)
+    # model = cnn_model(base_model, model_cut, nb_features, num_classes,
+    #                 lin_features, dropout_prob, bn_final=bn_final, concat_pool=concat_pool)
 
  
-    #load checkpoint
+    # #load checkpoint
 
-    if model_arch =='rexnet1_0x':
-        cp= 'checkpoints/rexnet1_0x.pth'
+    # if model_arch =='rexnet1_0x':
+    #     cp= 'checkpoints/rexnet1_0x.pth'
 
-    elif model_arch =='rexnet1_3x':
-        cp = 'checkpoints/rexnet1_3x.pth'
+    # elif model_arch =='rexnet1_3x':
+    #     cp = 'checkpoints/rexnet1_3x.pth'
 
-    elif model_arch == "darknet19":
-        cp = 'checkpoints/darknet19.pth'
+    # elif model_arch == "darknet19":
+    #     cp = 'checkpoints/darknet19.pth'
 
 
-    model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
+    # model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
 
 
     return model

@@ -248,7 +248,7 @@ class Trainer:
                 self.min_loss = eval_metrics['loss_val']
                 wandb.log({"best_val_loss": self.min_loss})
                 wandb.log({"best_val_accB": eval_metrics['acc_valB']})
-                #wandb.log({"best_val_accN": eval_metrics['acc_valN']})
+                wandb.log({"best_val_accN": eval_metrics['acc_valN']})
        
                 self.save(self.output_file)
 
@@ -416,8 +416,8 @@ class ClassificationTrainer(Trainer):
             loss_val += self.criterion(out, target).item()
 
             out = torch.sigmoid(out)
-            top_valB += torch.sum((torch.abs(target - out) <= 0.08)).item()
-            #top_valN += torch.sum((torch.abs(target[:,1] - out[:,1]) <= 0.08)).item()
+            top_valB += torch.sum((torch.abs(target[:,0] - out[:,0]) <= 0.08)).item()
+            top_valN += torch.sum((torch.abs(target[:,1] - out[:,1]) <= 0.08)).item()
 
             num_samples += x.shape[0]
 
@@ -425,17 +425,17 @@ class ClassificationTrainer(Trainer):
 
         loss_val /= len(self.val_loader)
         acc_valB = top_valB/ num_samples
-        #acc_valN = top_valN/ num_samples
+        acc_valN = top_valN/ num_samples
         wandb.log({"val_accB": acc_valB})
-        #wandb.log({"val_accN": acc_valN})
+        wandb.log({"val_accN": acc_valN})
         wandb.log({"val_loss": loss_val})
       
 
-        return dict(train_loss=self.train_loss, loss_val=loss_val, acc_valB=acc_valB)
+        return dict(train_loss=self.train_loss, loss_val=loss_val, acc_valB=acc_valB, acc_valN=acc_valN)
 
     @staticmethod
     def _eval_metrics_str(eval_metrics):
         return (f"Training loss: {eval_metrics['train_loss']:.4} "
                 f"Validation loss: {eval_metrics['loss_val']:.4} "
-                f"Acc Val Blur: {eval_metrics['acc_valB']:.2%}")
-                #f"Acc Val Noise: {eval_metrics['acc_valN']:.2%}")
+                f"Acc Val Blur: {eval_metrics['acc_valB']:.2%}"
+                f"Acc Val Noise: {eval_metrics['acc_valN']:.2%}")
