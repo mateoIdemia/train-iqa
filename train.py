@@ -45,7 +45,7 @@ def build_dataset(config):
 
 def build_network(config):
     model_cut = -2
-    num_classes=2
+    num_classes=1
     lin_features=512
     dropout_prob=0.5
     bn_final=False
@@ -64,19 +64,19 @@ def build_network(config):
     #                 lin_features, dropout_prob, bn_final=bn_final, concat_pool=concat_pool)
 
  
-    #load checkpoint
+    # #load checkpoint
 
-    if model_arch =='rexnet1_0x':
-        cp= 'checkpoints/rexnet1_0x.pth'
+    # if model_arch =='rexnet1_0x':
+    #     cp= 'checkpoints/rexnet1_0x.pth'
 
-    elif model_arch =='rexnet1_3x':
-        cp = 'checkpoints/rexnet1_3x.pth'
+    # elif model_arch =='rexnet1_3x':
+    #     cp = 'checkpoints/rexnet1_3x.pth'
 
-    elif model_arch == "darknet19":
-        cp = 'checkpoints/darknet19.pth'
+    # elif model_arch == "darknet19":
+    #     cp = 'checkpoints/darknet19.pth'
 
 
-    model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
+    # model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
 
 
     return model
