@@ -66,17 +66,17 @@ def build_network(config):
  
     #load checkpoint
 
-    if model_arch =='rexnet1_0x':
-        cp= 'checkpoints/rexnet1_0x.pth'
+    # if model_arch =='rexnet1_0x':
+    #     cp= 'checkpoints/rexnet1_0x.pth'
 
-    elif model_arch =='rexnet1_3x':
-        cp = 'checkpoints/rexnet1_3x.pth'
+    # elif model_arch =='rexnet1_3x':
+    #     cp = 'checkpoints/rexnet1_3x.pth'
 
-    elif model_arch == "darknet19":
-        cp = 'checkpoints/darknet19.pth'
+    # elif model_arch == "darknet19":
+    #     cp = 'checkpoints/darknet19.pth'
 
 
-    model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
+    # model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
 
 
     return model
