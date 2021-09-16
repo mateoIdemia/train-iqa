@@ -17,7 +17,7 @@ def build_dataset(config):
 
     size = config['image_size']
     train_transforms = transforms.Compose([
-                  torchvision.transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333))
+                  torchvision.transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333)),
                   transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3, hue=0.2),
                   transforms.RandomHorizontalFlip(),
                   transforms.ToTensor(),
