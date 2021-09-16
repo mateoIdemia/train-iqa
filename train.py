@@ -17,7 +17,7 @@ def build_dataset(config):
 
     size = config['image_size']
     train_transforms = transforms.Compose([
-                  transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333)),
+                  transforms.RandomResizedCrop(size, scale=(0.9, 1.0), ratio=(0.75, 1.3333333333333333)),
                   transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3, hue=0.2),
                   transforms.RandomHorizontalFlip(),
                   transforms.ToTensor(),
@@ -25,7 +25,7 @@ def build_dataset(config):
               ])
 
     val_transforms = transforms.Compose([
-                    transforms.RandomResizedCrop(size, scale=(0.2, 1.0), ratio=(0.75, 1.3333333333333333)),
+                    transforms.Resize((size, size)),
                     transforms.ToTensor(),
                     normalize,
                 ])
@@ -65,17 +65,17 @@ def build_network(config):
  
     #load checkpoint
 
-    # if model_arch =='rexnet1_0x':
-    #     cp= 'checkpoints/rexnet1_0x.pth'
+    if model_arch =='rexnet1_0x':
+        cp= 'checkpoints/rexnet1_0x.pth'
 
-    # elif model_arch =='rexnet1_3x':
-    #     cp = 'checkpoints/rexnet1_3x.pth'
+    elif model_arch =='rexnet1_3x':
+        cp = 'checkpoints/rexnet1_3x.pth'
 
-    # elif model_arch == "darknet19":
-    #     cp = 'checkpoints/darknet19.pth'
+    elif model_arch == "darknet19":
+        cp = 'checkpoints/darknet19.pth'
 
 
-    # model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
 
 
     return model
