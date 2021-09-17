@@ -28,7 +28,7 @@ class IQA_DATASET(Dataset):
         targetN = int(os.path.split(file)[1].split('_')[4])
         targetN = round(targetN*0.16+0.1,2)
 
-        return img,  torch.tensor([targetB,])
+        return img,  torch.tensor([targetN,])
 
     def __len__(self):
         return len(self.imgs)

@@ -12,10 +12,10 @@ def get_config():
     sweep_config['metric'] = metric
     parameters_dict = {
         'epochs': {
-            'values': [20, 30]
+            'values': [10]
             },
         'lr': {
-            'values': [0.0001, 0.0003, 0.0005, 0.0007, 0.001]
+            'values': [0.0007, 0.001]
             },
         'batch_size': {
             'values': [64]
@@ -39,7 +39,7 @@ def get_config():
             'value': 1}
         ,
         'freeze': {
-            'value': None}
+            'value': 'features.20.bias'}
         ,
         'train_folder': {
             'value': 'DS_iqa/train'}
