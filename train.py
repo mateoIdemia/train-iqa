@@ -75,7 +75,7 @@ def build_network(config):
         cp = 'checkpoints/darknet19.pth'
 
 
-    #model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(cp,map_location=torch.device('cpu')))
 
 
     return model
